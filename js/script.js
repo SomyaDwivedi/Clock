@@ -1,25 +1,56 @@
-let clockInterval; 
+document.addEventListener('DOMContentLoaded', function () {
+  const showTimeBtn = document.getElementById('showTimeBtn');
+  const hideTimeBtn = document.getElementById('hideTimeBtn');
+  const clock = document.getElementById('clock');
+  let clockInterval;
 
-function Clock() {
-    const currentTime = new Date().toLocaleTimeString();
-    document.getElementById("clock").textContent = currentTime;
-}
+  showTimeBtn.addEventListener('click', function () {
+    clock.textContent = new Date().toLocaleTimeString(); // Set time immediately
 
+    clockInterval = setInterval(function () {
+      // Update only the time part, keep existing date if shown
+      const currentTime = new Date().toLocaleTimeString();
+      const existingContent = clock.innerHTML;
+      const timePart = existingContent.split('<br>')[0]; 
+      if (existingContent.includes('<br>')) {
+        clock.innerHTML = currentTime + existingContent.substring(existingContent.indexOf('<br>'));
+      } else {
+        clock.textContent = currentTime;
+      }
+    }, 1000);
 
-document.getElementById("hideTimeBtn").style.display = "none";
+    clock.style.display = 'block';
+    showTimeBtn.style.display = 'none';
+    hideTimeBtn.style.display = 'inline-flex';
+  });
 
-document.getElementById("showTimeBtn").addEventListener("click", () => {
-    Clock(); 
-    clockInterval = setInterval(Clock, 1000); 
+  hideTimeBtn.addEventListener('click', function () {
+    clearInterval(clockInterval);
 
-    document.getElementById("showTimeBtn").style.display = "none";
-    document.getElementById("hideTimeBtn").style.display = "inline";
-});
+    clock.style.display = 'none';
+    hideTimeBtn.style.display = 'none';
+    showTimeBtn.style.display = 'inline-flex';
+ 
+  });
 
-document.getElementById("hideTimeBtn").addEventListener("click", () => {
-    clearInterval(clockInterval); 
-    document.getElementById("clock").textContent = "";
-    
-    document.getElementById("hideTimeBtn").style.display = "none";
-    document.getElementById("showTimeBtn").style.display = "inline";
+  document.addEventListener('keydown', function (e) {
+    // Toggle to show/hide date
+    if (e.key === 'n' || e.key === 'N') {
+      const currentTime = new Date().toLocaleTimeString();
+      const currentDateString = '<br>' + new Date().toLocaleDateString();
+
+      if (clock.innerHTML.includes('<br>')) {
+        // Date is currently shown, so hide it by showing only time
+        // Need to ensure the live time update continues correctly
+        if (clock.style.display === 'block') { // Only update if clock is visible
+            clock.textContent = new Date().toLocaleTimeString();
+        }
+      } else {
+        // Date is not shown, so add it
+        if (clock.style.display === 'block') { // Only update if clock is visible
+          clock.innerHTML = currentTime + currentDateString;
+        }
+      }
+    }
+  });
 });
