@@ -5,10 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let clockInterval;
 
   showTimeBtn.addEventListener('click', function () {
-    clock.textContent = new Date().toLocaleTimeString(); // Set time immediately
+    clock.textContent = new Date().toLocaleTimeString();
 
     clockInterval = setInterval(function () {
-      // Update only the time part, keep existing date if shown
       const currentTime = new Date().toLocaleTimeString();
       const existingContent = clock.innerHTML;
       const timePart = existingContent.split('<br>')[0]; 
@@ -30,27 +29,31 @@ document.addEventListener('DOMContentLoaded', function () {
     clock.style.display = 'none';
     hideTimeBtn.style.display = 'none';
     showTimeBtn.style.display = 'inline-flex';
- 
   });
 
   document.addEventListener('keydown', function (e) {
-    // Toggle to show/hide date
     if (e.key === 'n' || e.key === 'N') {
       const currentTime = new Date().toLocaleTimeString();
       const currentDateString = '<br>' + new Date().toLocaleDateString();
 
       if (clock.innerHTML.includes('<br>')) {
-        // Date is currently shown, so hide it by showing only time
-        // Need to ensure the live time update continues correctly
-        if (clock.style.display === 'block') { // Only update if clock is visible
-            clock.textContent = new Date().toLocaleTimeString();
+        if (clock.style.display === 'block') { 
+          clock.textContent = new Date().toLocaleTimeString();
         }
       } else {
-        // Date is not shown, so add it
-        if (clock.style.display === 'block') { // Only update if clock is visible
+        if (clock.style.display === 'block') { 
           clock.innerHTML = currentTime + currentDateString;
         }
       }
     }
+  });
+
+
+  clock.addEventListener('mouseover', function () {
+    clock.style.backgroundColor = 'rgb(255,250,0, 0.4)'; 
+  });
+
+  clock.addEventListener('mouseout', function () {
+    clock.style.backgroundColor = ''; 
   });
 });
