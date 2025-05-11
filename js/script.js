@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+
   const showTimeBtn = document.getElementById('showTimeBtn');
   const hideTimeBtn = document.getElementById('hideTimeBtn');
   const clock = document.getElementById('clock');
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     clock.textContent = new Date().toLocaleTimeString();
 
     clockInterval = setInterval(function () {
+      
       const currentTime = new Date().toLocaleTimeString();
       const existingContent = clock.innerHTML;
       const timePart = existingContent.split('<br>')[0]; 
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   hideTimeBtn.addEventListener('click', function () {
+
     clearInterval(clockInterval);
 
     clock.style.display = 'none';
@@ -32,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.addEventListener('keydown', function (e) {
+
     if (e.key === 'n' || e.key === 'N') {
       const currentTime = new Date().toLocaleTimeString();
       const currentDateString = '<br>' + new Date().toLocaleDateString();
@@ -47,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-
 
   clock.addEventListener('mouseover', function () {
     clock.style.backgroundColor = 'rgb(255,250,0, 0.4)'; 
