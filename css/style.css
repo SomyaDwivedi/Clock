@@ -1,65 +1,50 @@
 body {
   display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   height: 100vh;
-  margin: 0;
+  background-image: 
+    linear-gradient(to right, skyblue,45%, black), 
+    linear-gradient(to top, white, 60%, transparent);
+  background-blend-mode: overlay; 
 }
 
-.moonBox {
-  position: absolute;
-  width: 50%;
-  height: 100%;
+
+.moon{
+  width: 120px;
+  height:120px;
   background-color: black;
-  left: 50%;
-}
-
-.stars{
-    width: 3px;
-    height: 3px;
-    position: absolute;
-    right: 10%
-}
-
-
-.sunBox {
-  position: absolute;
-  width: 45%;
-  height: 100%;
-  right: 50%;
-}
-
-.middleBox {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  background: linear-gradient(to right, rgb(255, 255, 255), black);
-}
-
-.Moon {
-  width: 45px;
-  height: 45px;
-  border: 1px solid #ede9d7;
-  border-radius: 50%;
-  position: absolute;
-  top: 70px;
+  margin: auto;
+  display: flex;
+  position: relative;
+  border-radius: 10%;
   right: 200px;
-  background-color: #ede9d7;
-  box-shadow: 0 0 70px #bcbbbb;
+  top: 70px
 }
+  .moon1{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 70px;
+    right: 200px;
+    box-shadow: 0px 0px 100px 30px lightblue;
+  }
 
 
 
-.Sun {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #fac259;
-  border-radius: 50%;
+.Sun{
+
+  border-radius:50%;
+  width: 55px;
+  height:55px;
   position: absolute;
   top: 70px;
   left: 200px;
-  background-color: #fac259;
-  box-shadow: 0 0 50px #d59010;
+  background-color: rgb(255, 225, 0);
+  box-shadow: 0px 0px 100px 20px yellow;
+
 }
 
 .box {
@@ -74,4 +59,11 @@ body {
   color: white;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
+}
+#clock {
+  font-size: 40px; /* or any size you want */
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+  
 }
